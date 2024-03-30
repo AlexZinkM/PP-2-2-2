@@ -1,6 +1,7 @@
 package web.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,16 +22,13 @@ public class CarController {
 
 
     @GetMapping(value = "/cars")
-    public String showAll(Model model) {
-        model.addAttribute("cars", csi.showAll());
+    public String showCOUNT(@RequestParam(value = "count", required = false) Integer count, Model model) {
+        if (count != null) {
+            model.addAttribute("cars", csi.showCOUNT(count));
+        } else {
+            model.addAttribute("cars", csi.showAll());
+        }
         return "cars";
     }
-
-    @GetMapping(value = "/cars?count={count}")
-    public String showCOUNT(@RequestParam("count") int count, Model model) {
-        model.addAttribute("carsCount", csi.showCOUNT(count));
-        return "carsCount";
-    }
-
 
 }
