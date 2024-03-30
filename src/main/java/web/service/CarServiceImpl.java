@@ -27,10 +27,6 @@ public class CarServiceImpl implements CarService {
        return carsList.stream().limit(count).toList();
     }
 
-//    public static void main(String[] args) {
-//        CarServiceImpl csi = new CarServiceImpl();
-//        System.out.println(csi.showCOUNT(3));
-//    }
 
 
 }
