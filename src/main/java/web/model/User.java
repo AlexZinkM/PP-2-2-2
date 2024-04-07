@@ -2,34 +2,38 @@ package web.model;
 
 import javax.persistence.*;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 
-//@Entity
-//@Table(name = "users")
+@Entity
+@Table(name = "users")
 public class User {
-  //  @Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@Column
-    private String name;
+    @Column(name = "name")
+    @NotEmpty(message = "Имя не должно быть пустым")
+    @Size(min = 2, max = 20, message = "От 2 до 20 знаков")
+    private String firstName;
 
-    //@Column
+    @Column(name = "last_name")
     private String lastName;
 
-    //@Column
-    private Byte age;
+    @Column(name = "age")
+    private byte age;
 
-    public User() {
 
-    }
+    public User() {}
 
-    public User(Long id, String name, String lastName, Byte age) {
-        this.id = id;
-        this.name = name;
+    public User(String firstName, String lastName, byte age) {
+        this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
     }
+
 
 
     public Long getId() {
@@ -40,12 +44,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -56,11 +60,11 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Byte getAge() {
+    public byte getAge() {
         return age;
     }
 
-    public void setAge(Byte age) {
+    public void setAge(byte age) {
         this.age = age;
     }
 
@@ -68,9 +72,9 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
+                ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", age=" + age +
+                ", age='" + age + '\'' +
                 '}';
     }
 }

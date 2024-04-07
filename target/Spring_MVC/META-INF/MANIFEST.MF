@@ -1,5 +1,5 @@
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
-Built-By: macbookair13
-Build-Jdk: 21
+Built-By: Honor
+Build-Jdk: Oracle OpenJDK version 22
 
