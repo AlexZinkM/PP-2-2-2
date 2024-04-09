@@ -7,14 +7,14 @@ import javax.validation.constraints.Size;
 
 
 @Entity
-@Table(name = "users")
+@Table(name = "users", schema = "public")
 public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name")
+    @Column(name = "first_name")
     @NotEmpty(message = "Имя не должно быть пустым")
     @Size(min = 2, max = 20, message = "От 2 до 20 знаков")
     private String firstName;
@@ -33,7 +33,6 @@ public class User {
         this.lastName = lastName;
         this.age = age;
     }
-
 
 
     public Long getId() {
@@ -68,13 +67,12 @@ public class User {
         this.age = age;
     }
 
+
     @Override
     public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age='" + age + '\'' +
-                '}';
+        return "Пользователь №" + (id) + ": " + lastName  + " " + firstName +
+                ", возраст " + age;
     }
 }
+
+
