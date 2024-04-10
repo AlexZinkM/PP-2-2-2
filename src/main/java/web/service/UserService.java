@@ -13,5 +13,5 @@ public interface UserService {
 
     void update(User updatedPerson);
 
-    public User delete(long id);
+    public void delete(long id);
 }

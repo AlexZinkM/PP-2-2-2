@@ -34,13 +34,14 @@ public class UserController {
 
     @GetMapping("/get")
     public String get(@RequestParam(value = "id") Long id, Model model) {
-        if (userService.get(id) == null) {
+        User user = userService.get(id);
+        if (user == null) {
             return "errorPage";
-        } else {
-            model.addAttribute("user", userService.get(id));
-            return "get";
         }
+        model.addAttribute("user", user);
+        return "get";
     }
+
 
     @GetMapping(value = "/form")
     public String addUserForm(@ModelAttribute("user") User user) {
@@ -57,11 +58,11 @@ public class UserController {
     public String delete(@RequestParam(value = "id") Long id) {
         if (userService.get(id) == null) {
             return "errorPage";
-        } else {
-            userService.delete(id);
-            return "deleteCompleted";
         }
+        userService.delete(id);
+        return "deleteCompleted";
     }
+
     @GetMapping("/update")
     public String update(@ModelAttribute("user") User user) {
         userService.update(user);

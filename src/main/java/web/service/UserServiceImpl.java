@@ -3,7 +3,6 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.DAO.UserDAO;
-import web.DAO.UserDAOImpl;
 import web.model.User;
 
 import java.util.List;
@@ -11,8 +10,14 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    final private UserDAO ud;
+
     @Autowired
-    UserDAO ud = new UserDAOImpl();
+    public UserServiceImpl(UserDAO ud) {
+        this.ud = ud;
+    }
+
+
     public List<User> getAll() {
         return ud.getAll();
     }
@@ -28,7 +33,7 @@ public class UserServiceImpl implements UserService {
     public void update(User user) {
         ud.update(user);
     }
-    public User delete(long id) {
-        return ud.delete(id);
+    public void delete(long id) {
+         ud.delete(id);
     }
 }

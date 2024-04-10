@@ -27,7 +27,6 @@ public class UserDAOImpl implements UserDAO {
     @Transactional
     public void update(User user) {
         entityManager.merge(user);
-        entityManager.flush();
     }
 
     @Override
@@ -38,21 +37,14 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     @Transactional
-    public User delete(long id) throws NullPointerException {
-        User user = get(id);
-        if (null == user) {
-            throw new NullPointerException("Нет такого пользователя");
-        }
-        entityManager.remove(user);
-        entityManager.flush();
-        return user;
+    public void delete(long id) {
+        entityManager.remove(get(id));
     }
 
     @Override
     @Transactional
     public void create(User user) {
         entityManager.persist(user);
-        entityManager.flush();
     }
 
 
